@@ -1,0 +1,10 @@
+backend/.env
+backend/.venv/
+backend/__pycache__/
+backend/static/gallery/*
+!backend/static/gallery/README.txt
+backend/static/reports/*
+!backend/static/reports/README.txt
+frontend/.env
+frontend/build/
+frontend/node_modules/
