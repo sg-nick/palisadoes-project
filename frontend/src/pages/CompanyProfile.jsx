@@ -78,7 +78,7 @@ const CompanyProfile = () => {
                   <h3 className="text-xl font-bold text-slate-900">Our Mission</h3>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
-                  To provide high-quality financial services that empower our members, promote financial stability, and support community growth.
+                   To maximize members’ wealth and enhance their wellbeing while developing valuable lifelong relationships.
                 </p>
               </CardContent>
             </Card>
@@ -92,7 +92,7 @@ const CompanyProfile = () => {
                   <h3 className="text-xl font-bold text-slate-900">Our Vision</h3>
                 </div>
                 <p className="text-slate-600 leading-relaxed">
-                  To be Jamaica's preferred credit union by delivering innovative financial solutions, exceptional member service, and lasting value.
+                  To be To be the premier credit union that provides innovative products and services in a friendly, environment, with a highly motivated and efficient team, ensuring a strong and viable institution with an excellent corporate imageJamaica's preferred credit union by delivering innovative financial solutions, exceptional member service, and lasting value.
                 </p>
               </CardContent>
             </Card>
