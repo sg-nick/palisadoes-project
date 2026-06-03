@@ -15,6 +15,13 @@ import FIP from "./pages/FIP";
 import Loans from "./pages/Loans";
 import Membership from "./pages/Membership";
 import OnlineBanking from "./pages/OnlineBanking";
+import {
+  BankingInformation,
+  HomeEquityMortgageLoan,
+  MotorVehicleLoanChecklist,
+  MotorVehicleRegistration,
+  PartnerPlan,
+} from "./pages/ServiceInfoPages";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -57,6 +64,11 @@ function App() {
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/membership" element={<Membership />} />
                   <Route path="/online-banking" element={<OnlineBanking />} />
+                  <Route path="/home-equity-mortgage-loan" element={<HomeEquityMortgageLoan />} />
+                  <Route path="/motor-vehicle-loan-checklist" element={<MotorVehicleLoanChecklist />} />
+                  <Route path="/partner-plan" element={<PartnerPlan />} />
+                  <Route path="/motor-vehicle-registration" element={<MotorVehicleRegistration />} />
+                  <Route path="/banking-information" element={<BankingInformation />} />
                 </Routes>
               </Layout>
             }

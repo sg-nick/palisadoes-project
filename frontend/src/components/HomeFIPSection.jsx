@@ -40,7 +40,7 @@ const HomeFIPSection = () => {
 
             <Link to="/fip" data-testid="home-fip-cta" className="inline-block mt-8">
               <Button size="lg" className="bg-[#8A4D6F] hover:bg-[#6e3d59] text-white">
-                View FIP plans <ArrowRight className="w-4 h-4 ml-2" />
+                View FIP Information <ArrowRight className="w-4 h-4 ml-2" />
               </Button>
             </Link>
           </div>
