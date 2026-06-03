@@ -1,13 +1,14 @@
 import React from "react";
 import { ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { assetUrl } from "../lib/assets";
 
 const PageHero = ({
   eyebrow,
   title,
   subtitle,
   breadcrumb,
-  image = "",
+  image = assetUrl("/hero_image.png"),
 }) => {
   return (
     <section className="relative overflow-hidden bg-slate-950">

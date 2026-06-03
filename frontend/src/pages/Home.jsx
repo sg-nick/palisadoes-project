@@ -26,6 +26,7 @@ import { companyInfo, stats, locations } from "../mock/mockData";
 const iconMap = { TrendingUp, Wallet, Users, Award };
 
 const homeImages = {
+  hero: assetUrl("/hero_image.png"),
   branch: assetUrl("/PACCUL TEST IMAGE 3.png"),
 };
 
@@ -34,6 +35,11 @@ const Home = () => {
     <div>
       {/* HERO */}
       <section className="relative overflow-hidden bg-slate-950">
+        <img
+          src={homeImages.hero}
+          alt="Airplane in flight"
+          className="absolute inset-0 h-full w-full object-cover opacity-35"
+        />
         <div
           className="absolute inset-0"
           style={{
