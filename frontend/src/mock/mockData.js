@@ -390,6 +390,12 @@ export const policies = [
   },
 ];
 
+export const productImages = {
+  memberService: "/hero_image.png",
+  savings: "/hero_image.png",
+  payment: "/hero_image.png",
+};
+
 export const downloadForms = [
   { category: "Membership", name: "Membership Application Form (Adult)", size: "140 KB", url: formUrl("/forms/membership-application-form-adult.pdf") },
   { category: "Membership", name: "Member Info Update Form", size: "110 KB", url: formUrl("/forms/member-info-update-form.pdf") },

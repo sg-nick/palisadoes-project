@@ -31,6 +31,7 @@ import ImageSlot from "../components/ImageSlot";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { adultMembership, smartPacMembership, loansCatalog } from "../mock/loansData";
+import { productImages } from "../mock/mockData";
 import { assetUrl } from "../lib/assets";
 
 const productGroups = [
