@@ -7,6 +7,8 @@ import {
   CheckCircle2,
   ClipboardList,
   Copy,
+  CreditCard,
+  Download,
   FileText,
   Handshake,
   Home,
@@ -51,7 +53,7 @@ const DocumentList = ({ title, docs }) => (
               </div>
               <a href={doc.url} target="_blank" rel="noreferrer">
                 <Button variant="outline" className="border-[#8A4D6F] text-[#8A4D6F] hover:bg-purple-50">
-                  View <ArrowRight className="ml-2 h-4 w-4" />
+                  Download <Download className="ml-2 h-4 w-4" />
                 </Button>
               </a>
             </CardContent>
@@ -62,7 +64,7 @@ const DocumentList = ({ title, docs }) => (
   </section>
 );
 
-const ProductPage = ({ eyebrow, title, subtitle, overview, cards, docs = [], ctaLabel = "Apply Now" }) => (
+const ProductPage = ({ eyebrow, title, subtitle, overview, cards, docs = [], ctaLabel = "Apply Now", ctaTo = "/download-forms" }) => (
   <div>
     <PageHero eyebrow={eyebrow} title={title} subtitle={subtitle} breadcrumb={title} />
     <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
@@ -74,7 +76,7 @@ const ProductPage = ({ eyebrow, title, subtitle, overview, cards, docs = [], cta
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">{overview.title}</h2>
           <p className="mt-4 leading-relaxed text-slate-600">{overview.body}</p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link to="/download-forms">
+            <Link to={ctaTo}>
               <Button className="bg-[#8A4D6F] text-white hover:bg-[#6e3d59]">{ctaLabel}</Button>
             </Link>
             <Link to="/contact">
@@ -106,11 +108,15 @@ export const HomeEquityMortgageLoan = () => (
         "This loan option helps eligible members pursue home ownership, improvement projects, or larger secured borrowing needs with guidance from the credit union team.",
     }}
     cards={[
-      { title: "Key Benefits", icon: Home, items: ["Mortgage and property-backed financing options.", "Longer repayment terms where eligibility allows.", "Member-focused guidance through the application process."] },
-      { title: "Requirements", icon: ClipboardList, items: ["Proof of income and employment.", "Valid identification and member records.", "Property documents and valuation details where applicable."] },
-      { title: "Application Process", icon: FileText, items: ["Review the loan requirements.", "Gather supporting documents.", "Submit the application and await credit review."] },
-      { title: "Support", icon: ShieldCheck, items: ["Speak with member services before applying.", "Ask about repayment terms and security requirements.", "Use the forms page to begin."] },
+      { title: "Property Documents", icon: Home, items: ["Executed sales agreement where applicable, or evidence supporting the loan purpose.", "Surveyor's report not older than 1 year.", "Copy of property title and current valuation not older than 1 year."] },
+      { title: "Income & Identity", icon: ClipboardList, items: ["Last 3 months pay slips and job letter stating position, salary, and length of employment.", "Valid Jamaican identification, TRN, and proof of address not older than 6 months.", "Self-employed members should provide accountant-prepared financials and account transactions."] },
+      { title: "Security & Costs", icon: FileText, items: ["Minimum share requirement of 15% of the loan amount.", "Quotation for property insurance, up-to-date property taxes, and mortgage statement where applicable.", "Assignment of life insurance or creditor life insurance may be required."] },
+      { title: "Approved Valuators", icon: ShieldCheck, items: ["The checklist includes the approved valuator list.", "Credit committee may request additional information after assessment.", "Security loans are scheduled between 10:00 a.m. and 2:00 p.m."] },
     ]}
+    docs={downloadForms.filter((f) =>
+      ["Home Equity-Mortgage Checklist and List of Valuators", "Security Loan Application Form", "Guarantor Form"].includes(f.name)
+    )}
+    ctaLabel="Download Checklist"
   />
 );
 
@@ -125,13 +131,15 @@ export const MotorVehicleLoanChecklist = () => (
         "Motor vehicle financing may require income verification, valid identification, vehicle details, insurance arrangements, and other documents depending on the vehicle age and loan amount.",
     }}
     cards={[
-      { title: "Key Requirements", icon: Car, items: ["Vehicle quotation or sale agreement.", "Proof of income and employment.", "Comprehensive insurance arrangements where required."] },
-      { title: "Eligibility", icon: CheckCircle2, accent: "#0d9488", items: ["Active membership.", "Good standing with the credit union.", "Ability to meet repayment and security requirements."] },
-      { title: "Approval Process", icon: ClipboardList, items: ["Submit documents.", "Credit review and security assessment.", "Final approval and disbursement guidance."] },
-      { title: "Useful Forms", icon: FileText, accent: "#334155", items: ["Loan application forms.", "Guarantor or hypothecation forms where applicable.", "Insurance and salary deduction forms if requested."] },
+      { title: "Vehicle Documents", icon: Car, items: ["Letter from vendor or pro-forma invoice.", "Copy of vendor's identification when purchasing from an individual.", "Certificates of fitness and registration, copy of title, and Import Entry C87 where applicable."] },
+      { title: "Applicant Documents", icon: CheckCircle2, accent: "#0d9488", items: ["Last 3 months pay slips and job letter.", "Valid Jamaican identification, TRN, and proof of address not older than 6 months.", "Self-employed members should provide accountant-prepared financials and account transactions."] },
+      { title: "Valuation & Insurance", icon: ClipboardList, items: ["Valuation reports must come from an accepted valuator and be no older than 3 months.", "Insurance quotation should cover the value of the vehicle.", "Company-owned vehicles require incorporation, tax compliance, good standing, and authorized guarantor documents."] },
+      { title: "Loan Notes", icon: FileText, accent: "#334155", items: ["Minimum share requirement is 15% of the loan amount.", "100% financing is available for motor vehicle loans.", "Security loans are scheduled between 10:00 a.m. and 4:00 p.m."] },
     ]}
-    docs={downloadForms.filter((f) => ["Security Loan Application Form", "Guarantor Form", "Hypothecation Form", "Salary Deduction Form"].includes(f.name))}
-    ctaLabel="View Forms"
+    docs={downloadForms.filter((f) =>
+      ["Motor Vehicle Loan Checklist", "Security Loan Application Form", "Guarantor Form", "Hypothecation Form", "Salary Deduction Form"].includes(f.name)
+    )}
+    ctaLabel="Download Checklist"
   />
 );
 
@@ -146,17 +154,38 @@ export const PartnerPlan = () => (
         "The Partner Plan supports regular contributions and goal-based saving, helping members stay consistent while keeping funds connected to their credit union relationship.",
     }}
     cards={[
-      { title: "Benefits", icon: Handshake, items: ["Encourages disciplined saving.", "Useful for planned expenses and future goals.", "Keeps your savings relationship active."] },
-      { title: "Participation", icon: UsersFallback, accent: "#0d9488", items: ["Members can ask about available contribution options.", "Terms are guided by the plan agreement.", "Support is available through member services."] },
-      { title: "How It Works", icon: Banknote, items: ["Choose a savings goal.", "Review the agreement.", "Maintain contributions according to the plan terms."] },
-      { title: "Enrollment", icon: FileText, accent: "#334155", items: ["Review the Partner Plan document.", "Contact member services for assistance.", "Submit required membership information."] },
+      { title: "Plan Purpose", icon: Handshake, items: ["A contracted savings plan for members who want a structured draw at the end of the plan period.", "Members select the number of contracted hands and the number of weeks or months.", "The contract records the amount invested, proposed bonus, and total draw."] },
+      { title: "Payment Setup", icon: UsersFallback, accent: "#0d9488", items: ["Choose monthly, fortnightly, or weekly payment arrangements.", "Payment method is recorded on the contract.", "Start and end dates are captured for the savings period."] },
+      { title: "Bonus Terms", icon: Banknote, items: ["Where one or two payments are missed but paid within 5 working days of the due date, 50% of the proposed bonus applies.", "Where the member defaults outside that grace period, no bonus is applied.", "Members sign to confirm the terms and conditions."] },
+      { title: "Enrollment", icon: FileText, accent: "#334155", items: ["Complete the Pali Partner Plan contract.", "Provide member account, contact, employer, and address details.", "Submit the signed contract to member services."] },
     ]}
-    docs={downloadForms.filter((f) => f.name === "Pali Partner Plan")}
-    ctaLabel="View Plan Form"
+    docs={downloadForms.filter((f) => ["Pali Partner Plan", "Pali Partner Plan Contract"].includes(f.name))}
+    ctaLabel="Download Contract"
   />
 );
 
 const UsersFallback = Handshake;
+
+export const DebitMastercard = () => (
+  <ProductPage
+    eyebrow="Everyday Banking"
+    title="AccessPlus Debit Mastercard"
+    subtitle="Convenient account access for everyday spending, ATM withdrawals, and secure local or international purchases."
+    overview={{
+      title: "Use funds in your member account with more flexibility.",
+      body:
+        "The AccessPlus Debit Mastercard gives members a practical way to shop, withdraw cash, and manage everyday transactions using available funds in their Palisadoes account.",
+    }}
+    cards={[
+      { title: "Everyday Spending", icon: CreditCard, items: ["Pay conveniently for routine purchases.", "Use available funds from your member account.", "Reduce the need to carry cash."] },
+      { title: "ATM Access", icon: Banknote, accent: "#0d9488", items: ["Withdraw cash when needed.", "Access funds through supported ATM networks.", "Keep day-to-day banking more flexible."] },
+      { title: "Security", icon: ShieldCheck, items: ["Chip-card protection supports safer transactions.", "Card controls and account monitoring help protect member funds.", "Report lost or suspicious activity quickly to member services."] },
+      { title: "Acceptance", icon: Landmark, accent: "#334155", items: ["Accepted locally and internationally wherever Mastercard debit is supported.", "Useful for travel, online payments, and point-of-sale purchases.", "Backed by the convenience of the AccessPlus network."] },
+    ]}
+    ctaLabel="Contact Member Services"
+    ctaTo="/contact"
+  />
+);
 
 export const MotorVehicleRegistration = () => (
   <ProductPage

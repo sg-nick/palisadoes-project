@@ -25,28 +25,29 @@ const FIP_IMAGE =
   "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1800&q=75";
 
 const planRows = [
-  { benefit: "$10,000", premium: "$52.80" },
-  { benefit: "$20,000", premium: "$105.60" },
-  { benefit: "$30,000", premium: "$158.40" },
-  { benefit: "$40,000", premium: "$211.20" },
-  { benefit: "$50,000", premium: "$264.00" },
-  { benefit: "$60,000", premium: "$316.80" },
-  { benefit: "$70,000", premium: "$369.60" },
-  { benefit: "$80,000", premium: "$422.40" },
-  { benefit: "$90,000", premium: "$475.20" },
-  { benefit: "$100,000", premium: "$528.00" },
+  { option: "Plan A", premium: "$422.40", benefit: "$80,000.00" },
+  { option: "Plan B", premium: "$633.60", benefit: "$120,000.00" },
+  { option: "Plan C", premium: "$792.00", benefit: "$150,000.00" },
+  { option: "Plan D", premium: "$1,320.00", benefit: "$250,000.00" },
+  { option: "Plan E", premium: "$2,112.00", benefit: "$400,000.00" },
+  { option: "Plan F", premium: "$3,432.00", benefit: "$650,000.00" },
+  { option: "Plan G", premium: "$5,280.00", benefit: "$1,000,000.00" },
+  { option: "Plan H", premium: "$6,864.00", benefit: "$1,300,000.00" },
+  { option: "Plan I", premium: "$8,864.00", benefit: "$1,600,000.00" },
+  { option: "Plan J", premium: "$10,458.00", benefit: "$1,800,000.00" },
+  { option: "Plan K", premium: "$12,680.00", benefit: "$2,000,000.00" },
 ];
 
 const overviewCards = [
   {
     icon: Shield,
-    title: "Life insurance support",
-    body: "F.I.P. helps cover funeral expenses, giving families practical financial support during a difficult time.",
+    title: "Final expense support",
+    body: "F.I.P. helps loved ones cover funeral expenses, outstanding debt, or other immediate needs during a difficult time.",
   },
   {
     icon: Users,
-    title: "Up to six covered",
-    body: "Members can cover themselves, a spouse or significant other, and eligible children under one plan.",
+    title: "One premium, family coverage",
+    body: "One monthly premium can cover you and up to five eligible family members under the selected plan.",
   },
   {
     icon: HeartHandshake,
@@ -57,8 +58,9 @@ const overviewCards = [
 
 const enrollment = [
   "Members must enrol before age 76",
-  "Children must be between ages 1 and 26 for coverage",
-  "Two advance payments of the selected group plan",
+  "Children must be ages 1 through 25 and unmarried; permanently disabled children remain covered once enrolled before age 26",
+  "Eligible family members may include a spouse or significant other, and up to two parents or parents-in-law",
+  "Select the plan option that best matches your desired individual benefit",
   "Supporting documents for dependents, such as an electronic birth certificate",
 ];
 
@@ -99,7 +101,7 @@ const FIP = () => {
               <div className="text-xs uppercase tracking-wider font-semibold text-purple-100">CUNA Caribbean Insurance</div>
               <h2 className="mt-2 text-3xl sm:text-4xl font-bold">A plan tailored for peace of mind</h2>
               <p className="mt-3 text-purple-50/90 leading-relaxed">
-                Choose a benefit amount that fits your household and keep loved ones protected with simple monthly premiums.
+                 Choose a plan option that fits your household and keep loved ones protected with simple monthly premiums.
               </p>
             </div>
           </div>
@@ -132,7 +134,7 @@ const FIP = () => {
               </div>
               <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Choose your F.I.P. coverage</h2>
               <p className="mt-3 text-slate-600 leading-relaxed">
-                Benefit options range from $10,000 to $100,000. Premiums below are monthly and shown for quick comparison.
+                Benefit options range from $80,000 to $2,000,000. Premiums below are monthly and shown for quick comparison.
               </p>
               <div className="mt-7 rounded-xl border border-teal-100 bg-white p-5">
                 <div className="flex items-start gap-3">
@@ -145,14 +147,16 @@ const FIP = () => {
             </div>
             <Card className="border-0 shadow-lg bg-white overflow-hidden">
               <CardContent className="p-0">
-                <div className="grid grid-cols-2 bg-[#8A4D6F] text-white text-sm font-bold">
-                  <div className="p-4">Benefit Amount</div>
+                <div className="grid grid-cols-3 bg-[#8A4D6F] text-white text-sm font-bold">
+                  <div className="p-4">Plan Option</div>
                   <div className="p-4 border-l border-white/15">Monthly Premium</div>
+                  <div className="p-4 border-l border-white/15">Individual Benefit</div>
                 </div>
                 {planRows.map((row, index) => (
-                  <div key={row.benefit} className={`grid grid-cols-2 text-sm ${index % 2 ? "bg-slate-50" : "bg-white"}`}>
-                    <div className="p-4 font-semibold text-slate-900">{row.benefit}</div>
+                  <div key={row.option} className={`grid grid-cols-3 text-sm ${index % 2 ? "bg-slate-50" : "bg-white"}`}>
+                    <div className="p-4 font-semibold text-slate-900">{row.option}</div>
                     <div className="p-4 border-l border-slate-100 text-slate-700">{row.premium}</div>
+                    <div className="p-4 border-l border-slate-100 font-semibold text-slate-900">{row.benefit}</div>
                   </div>
                 ))}
               </CardContent>
@@ -220,11 +224,11 @@ const FIP = () => {
                   Download the enrolment form, complete it in Adobe Acrobat, and submit it to member services.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/download-forms" data-testid="fip-enrol-form">
+                  <a href="https://cunacaribbean.com/wp-content/uploads/2022/02/NEW-FIP-APPLICATION-JAN-2022.pdf" target="_blank" rel="noreferrer" data-testid="fip-enrol-form">
                     <Button className="bg-[#8A4D6F] hover:bg-[#6e3d59] text-white">
                       <Download className="w-4 h-4 mr-2" /> Download Enrolment Form
                     </Button>
-                  </Link>
+                  </a>
                   <a href="mailto:member.services@palisadoescreditunion.com">
                     <Button variant="outline" className="border-[#8A4D6F] text-[#8A4D6F] hover:bg-purple-50">
                       <Mail className="w-4 h-4 mr-2" /> Email Member Services
@@ -243,11 +247,11 @@ const FIP = () => {
                   Updating your coverage or family details? Use the change-of-plan form and contact an advisor if you need help.
                 </p>
                 <div className="mt-7 flex flex-wrap gap-3">
-                  <Link to="/download-forms" data-testid="fip-change-form">
+                  <a href="https://cunacaribbean.com/wp-content/uploads/2023/05/FIP-CI-CHANGE-OF-PLAN-FORM-MAY-2023_JA.pdf" target="_blank" rel="noreferrer" data-testid="fip-change-form">
                     <Button className="bg-teal-600 hover:bg-teal-700 text-white">
                       <Download className="w-4 h-4 mr-2" /> Download Change Form
                     </Button>
-                  </Link>
+                  </a>
                   <Link to="/contact">
                     <Button variant="outline" className="border-teal-600 text-teal-700 hover:bg-teal-50">
                       Talk to an Advisor <ArrowRight className="w-4 h-4 ml-2" />

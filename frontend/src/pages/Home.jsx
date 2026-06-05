@@ -5,11 +5,6 @@ import {
   Wallet,
   Users,
   Award,
-  Banknote,
-  Car,
-  ClipboardList,
-  Handshake,
-  Home as HomeIcon,
   MapPin,
   ArrowRight,
   ShieldCheck,
@@ -34,63 +29,6 @@ const homeImages = {
   hero: assetUrl("/hero_image.png"),
   branch: assetUrl("/PACCUL TEST IMAGE 3.png"),
 };
-
-const featuredServices = [
-  {
-    title: "Home Equity & Mortgage Loan",
-    description: "Property-backed financing for home ownership, improvements, and larger member goals.",
-    benefits: ["Mortgage and home equity options", "Longer-term repayment guidance", "Document support before applying"],
-    cta: "Learn More",
-    to: "/home-equity-mortgage-loan",
-    icon: HomeIcon,
-    accent: "#8A4D6F",
-  },
-  {
-    title: "Motor Vehicle Loan Checklist",
-    description: "A quick preparation guide for members applying for new or used vehicle financing.",
-    benefits: ["Vehicle documents", "Income and ID requirements", "Insurance and security notes"],
-    cta: "View Checklist",
-    to: "/motor-vehicle-loan-checklist",
-    icon: ClipboardList,
-    accent: "#0d9488",
-  },
-  {
-    title: "Partner Plan",
-    description: "A structured savings plan that helps members contribute consistently toward planned goals.",
-    benefits: ["Goal-based saving", "Participation options", "Plan document available"],
-    cta: "Learn More",
-    to: "/partner-plan",
-    icon: Handshake,
-    accent: "#334155",
-  },
-  {
-    title: "Motor Vehicle Registration",
-    description: "Helpful registration information and resources for members preparing vehicle documents.",
-    benefits: ["Required documents", "Registration steps", "Member preparation tips"],
-    cta: "View Information",
-    to: "/motor-vehicle-registration",
-    icon: Car,
-    accent: "#b45309",
-  },
-  {
-    title: "FIP Program",
-    description: "Affordable family indemnity support designed to help loved ones with funeral expenses.",
-    benefits: ["Simple enrolment", "Flexible benefit options", "Family-focused protection"],
-    cta: "View FIP Information",
-    to: "/fip",
-    icon: ShieldCheck,
-    accent: "#8A4D6F",
-  },
-  {
-    title: "Banking Information",
-    description: "Deposit guidance, banking services, payment references, and proof-of-payment instructions.",
-    benefits: ["Deposit information", "Payment instructions", "Banking agreement forms"],
-    cta: "View Banking Information",
-    to: "/banking-information",
-    icon: Banknote,
-    accent: "#0d9488",
-  },
-];
 
 const Home = () => {
   return (
@@ -155,7 +93,13 @@ const Home = () => {
               <div className="relative">
                 <div className="overflow-hidden rounded-3xl border border-white/15 bg-white/10 shadow-2xl backdrop-blur">
                   <div className="relative h-72 sm:h-80">
-                    <ImageSlot label="Member image space" className="h-full rounded-none border-white/20 bg-white/10 text-white/75" />
+                    <ImageSlot
+                      src={homeImages.branch}
+                      alt="Palisadoes members and staff at a credit union branch event"
+                      position="center"
+                      overlay="from-slate-950/55 via-slate-950/10 to-transparent"
+                      className="h-full rounded-none"
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <div className="inline-flex items-center gap-2 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-[#8A4D6F]">
@@ -248,7 +192,7 @@ const Home = () => {
 
           <div className="relative pb-10">
             <div className="overflow-hidden rounded-3xl shadow-xl">
-              <ImageSlot label="About image space" className="h-[430px]" />
+             <ImageSlot label="About image space" className="h-[430px]" />
             </div>
             <div className="absolute inset-x-4 -bottom-2 grid grid-cols-2 gap-3 sm:inset-x-8">
               {[
@@ -268,70 +212,6 @@ const Home = () => {
         </div>
 
 
-      </section>
-
-      {/* FEATURED SERVICES */}
-      <section className="bg-slate-50 py-20">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-10 items-end mb-10">
-            <div>
-              <div className="inline-block px-3 py-1 rounded-full bg-purple-50 text-[#8A4D6F] text-xs font-semibold uppercase tracking-wider mb-3">
-                Member Resources
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
-                Find the service information you need faster
-              </h2>
-            </div>
-            <p className="text-slate-600 leading-relaxed max-w-3xl">
-              Explore loan checklists, savings plans, banking instructions, registration guidance, and FIP information from one central place.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {featuredServices.map((service) => (
-              <Card key={service.title} className="group border-0 bg-white shadow-sm hover:shadow-xl transition-all duration-300 h-full overflow-hidden">
-                <div className="h-1.5" style={{ backgroundColor: service.accent }} />
-                <CardContent className="p-6 flex h-full flex-col">
-                  <div className="flex items-start justify-between gap-4">
-                    <div
-                      className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 transition-transform group-hover:scale-105"
-                      style={{ backgroundColor: `${service.accent}18` }}
-                    >
-                      <service.icon className="w-6 h-6" style={{ color: service.accent }} />
-                    </div>
-                    <span
-                      className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
-                      style={{ color: service.accent, backgroundColor: `${service.accent}14` }}
-                    >
-                      Resource
-                    </span>
-                  </div>
-                  <h3 className="mt-5 text-xl font-bold text-slate-900 leading-tight">{service.title}</h3>
-                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">{service.description}</p>
-                  <ul className="mt-5 space-y-2">
-                    {service.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-start gap-2 text-sm text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-teal-600 mt-0.5 shrink-0" />
-                        <span>{benefit}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-6 pt-2 flex-1 flex items-end">
-                    <Link to={service.to} className="w-full">
-                      <Button
-                        variant="outline"
-                        className="w-full border-[#8A4D6F] text-[#8A4D6F] hover:bg-purple-50"
-                        data-testid={`home-feature-${service.title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
-                      >
-                        {service.cta} <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* LOCATIONS */}

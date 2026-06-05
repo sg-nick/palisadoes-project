@@ -17,6 +17,7 @@ import Membership from "./pages/Membership";
 import OnlineBanking from "./pages/OnlineBanking";
 import {
   BankingInformation,
+  DebitMastercard,
   HomeEquityMortgageLoan,
   MotorVehicleLoanChecklist,
   MotorVehicleRegistration,
@@ -64,6 +65,7 @@ function App() {
                   <Route path="/loans" element={<Loans />} />
                   <Route path="/membership" element={<Membership />} />
                   <Route path="/online-banking" element={<OnlineBanking />} />
+                  <Route path="/debit-mastercard" element={<DebitMastercard />} />
                   <Route path="/home-equity-mortgage-loan" element={<HomeEquityMortgageLoan />} />
                   <Route path="/motor-vehicle-loan-checklist" element={<MotorVehicleLoanChecklist />} />
                   <Route path="/partner-plan" element={<PartnerPlan />} />

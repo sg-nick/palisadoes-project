@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
+  ArrowLeft,
   ArrowRight,
   Banknote,
+  Car,
   CheckCircle2,
   Clock,
   CreditCard,
@@ -11,6 +13,7 @@ import {
   Gift,
   HandCoins,
   HeartPulse,
+  Home as HomeIcon,
   Landmark,
   PiggyBank,
   Plane,
@@ -28,6 +31,7 @@ import ImageSlot from "../components/ImageSlot";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { adultMembership, smartPacMembership, loansCatalog } from "../mock/loansData";
+import { assetUrl } from "../lib/assets";
 
 const productGroups = [
   {
@@ -94,6 +98,49 @@ const serviceHighlights = [
   { icon: Plane, title: "Travelling Officers", text: "Member support that reaches beyond the branch where the service is available." },
 ];
 
+const featuredProductSlides = [
+  {
+    title: "Pali Partner Plan",
+    eyebrow: "Structured Savings",
+    summary:
+      "A contracted savings plan that helps members save consistently toward a planned draw, with terms recorded in the Pali Partner Plan contract.",
+    benefits: ["Weekly, fortnightly, or monthly payment setup", "Contracted hands and plan period", "Bonus terms tied to on-time payments"],
+    to: "/partner-plan",
+    icon: PiggyBank,
+    accent: "#0d9488",
+  },
+  {
+    title: "Home Equity Loan",
+    eyebrow: "Property-Backed Lending",
+    summary:
+      "Financing support for home ownership, property-backed borrowing, and related goals, guided by the home equity and mortgage checklist.",
+    benefits: ["Property title, surveyor's report, and valuation guidance", "Income and identity requirements", "Approved valuator list included"],
+    to: "/home-equity-mortgage-loan",
+    icon: HomeIcon,
+    accent: "#8A4D6F",
+  },
+  {
+    title: "Motor Vehicle Loan",
+    eyebrow: "Vehicle Financing",
+    summary:
+      "A checklist-led loan path for members preparing vehicle documents, valuation details, insurance quotes, and income verification.",
+    benefits: ["Vendor, title, registration, and fitness documents", "Accepted valuation companies", "100% financing available for motor vehicle loans"],
+    to: "/motor-vehicle-loan-checklist",
+    icon: Car,
+    accent: "#b45309",
+  },
+  {
+    title: "Debit Mastercard",
+    eyebrow: "Everyday Banking",
+    summary:
+      "AccessPlus Debit Mastercard gives members convenient access to account funds for daily purchases, ATM withdrawals, and secure transactions.",
+    benefits: ["Convenient everyday spending", "ATM access", "Local and international acceptance"],
+    to: "/debit-mastercard",
+    icon: CreditCard,
+    accent: "#334155",
+  },
+];
+
 const membershipCards = [
   {
     title: "Adult Membership",
@@ -152,6 +199,112 @@ const LoanListCard = ({ loan }) => {
   );
 };
 
+const ProductCarousel = () => {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActive((current) => (current + 1) % featuredProductSlides.length);
+    }, 5500);
+
+    return () => window.clearInterval(timer);
+  }, []);
+
+  const goTo = (index) => {
+    const total = featuredProductSlides.length;
+    setActive((index + total) % total);
+  };
+
+  return (
+    <section className="bg-white pb-16">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mb-8 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+          <div className="max-w-2xl">
+            <div className="inline-block rounded-full bg-teal-50 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-teal-700">
+              Featured Products
+            </div>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-slate-900">Popular member products</h2>
+          </div>
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full border-slate-200"
+              onClick={() => goTo(active - 1)}
+              aria-label="Previous product"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <Button
+              type="button"
+              variant="outline"
+              size="icon"
+              className="h-10 w-10 rounded-full border-slate-200"
+              onClick={() => goTo(active + 1)}
+              aria-label="Next product"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        <div className="overflow-hidden rounded-2xl border border-slate-100 bg-slate-50 shadow-sm">
+          <div
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${active * 100}%)` }}
+          >
+            {featuredProductSlides.map((slide) => (
+              <div key={slide.title} className="min-w-full">
+                <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:p-10">
+                  <div className="flex min-h-[260px] flex-col justify-between rounded-xl p-6 text-white" style={{ backgroundColor: slide.accent }}>
+                    <div>
+                      <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/15">
+                        <slide.icon className="h-6 w-6" />
+                      </div>
+                      <div className="mt-6 text-xs font-bold uppercase tracking-wider text-white/75">{slide.eyebrow}</div>
+                      <h3 className="mt-2 text-3xl font-bold">{slide.title}</h3>
+                    </div>
+                    <Link to={slide.to} className="mt-8">
+                      <Button className="bg-white text-slate-900 hover:bg-slate-100">
+                        More Info <ArrowRight className="ml-2 h-4 w-4" />
+                      </Button>
+                    </Link>
+                  </div>
+
+                  <div className="flex flex-col justify-center">
+                    <p className="text-lg leading-relaxed text-slate-700">{slide.summary}</p>
+                    <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                      {slide.benefits.map((benefit) => (
+                        <div key={benefit} className="rounded-lg border border-slate-100 bg-white p-4 text-sm font-medium text-slate-700">
+                          <CheckCircle2 className="mb-3 h-5 w-5" style={{ color: slide.accent }} />
+                          {benefit}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-5 flex justify-center gap-2">
+          {featuredProductSlides.map((slide, index) => (
+            <button
+              key={slide.title}
+              type="button"
+              className={`h-2.5 rounded-full transition-all ${active === index ? "w-8 bg-[#8A4D6F]" : "w-2.5 bg-slate-300"}`}
+              onClick={() => goTo(index)}
+              aria-label={`Show ${slide.title}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const ProductsServices = () => {
   return (
     <div>
@@ -177,14 +330,34 @@ const ProductsServices = () => {
             </p>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <ImageSlot label="Product image space" className="h-72 shadow-lg" />
+            <ImageSlot
+              src={productImages.memberService}
+              alt="Palisadoes members and staff in a branch setting"
+              position="center"
+              overlay="from-slate-950/25 via-transparent to-transparent"
+              className="h-72 shadow-lg"
+            />
             <div className="space-y-4">
-              <ImageSlot label="Savings image space" className="h-[134px] shadow-md" />
-              <ImageSlot label="Service image space" className="h-[134px] shadow-md" />
+              <ImageSlot
+                src={productImages.savings}
+                alt="Members reviewing savings and budget plans"
+                position="center"
+                overlay="from-slate-950/25 via-transparent to-transparent"
+                className="h-[134px] shadow-md"
+              />
+              <ImageSlot
+                src={productImages.payment}
+                alt="Debit card payment at a point of sale terminal"
+                position="center"
+                overlay="from-slate-950/25 via-transparent to-transparent"
+                className="h-[134px] shadow-md"
+              />
             </div>
           </div>
         </div>
       </section>
+
+      <ProductCarousel />
 
       <section className="bg-slate-50 py-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
