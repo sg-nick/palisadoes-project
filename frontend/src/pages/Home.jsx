@@ -27,7 +27,7 @@ const iconMap = { TrendingUp, Wallet, Users, Award };
 
 const homeImages = {
   hero: assetUrl("/hero_image.png"),
-  branch: assetUrl("/PACCUL TEST IMAGE 3.png"),
+  branch: assetUrl("/assets/branch.jpg"),
 };
 
 const Home = () => {
@@ -192,7 +192,7 @@ const Home = () => {
 
           <div className="relative pb-10">
             <div className="overflow-hidden rounded-3xl shadow-xl">
-             <ImageSlot label="About image space" className="h-[430px]" />
+              <img src={assetUrl("/assets/community.jpg")} alt="Palisadoes Credit Union community" className="h-[430px] w-full object-cover" />
             </div>
             <div className="absolute inset-x-4 -bottom-2 grid grid-cols-2 gap-3 sm:inset-x-8">
               {[

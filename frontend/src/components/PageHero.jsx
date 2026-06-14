@@ -12,13 +12,14 @@ const PageHero = ({
 }) => {
   return (
     <section className="relative overflow-hidden bg-slate-950">
-      {image && (
-        <img
-          src={image}
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-35"
-        />
-      )}
+      {false &&
+        image && (
+          <img
+            src={image}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover opacity-35"
+          />
+        )}
       <div className="absolute inset-0 bg-gradient-to-br from-[#5f314b]/95 via-[#8A4D6F]/85 to-[#0d9488]/80" />
       <div
         className="absolute inset-0 opacity-[0.08]"

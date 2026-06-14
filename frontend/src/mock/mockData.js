@@ -391,9 +391,9 @@ export const policies = [
 ];
 
 export const productImages = {
-  memberService: "/hero_image.png",
-  savings: "/hero_image.png",
-  payment: "/hero_image.png",
+  memberService: "/assets/community.jpg",
+  savings: "/assets/branch.jpg",
+  payment: "/assets/hero.jpg",
 };
 
 export const downloadForms = [
