@@ -117,7 +117,7 @@ const Home = () => {
                       <div className="text-xs text-white/65">Years</div>
                     </div>
                     <div className="p-5">
-                      <div className="text-2xl font-bold text-[#8A4D6F]">000</div>
+                      <div className="text-2xl font-bold text-[#8A4D6F]">001</div>
                       <div className="text-xs text-white/65">Members</div>
                     </div>
                     <div className="p-5">
